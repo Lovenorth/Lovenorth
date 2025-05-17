@@ -5,39 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登录界面</title>
     <style>
-        /* 新增背景虚化层 */
-    body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('01.png') center/cover; /* 继承主背景图 */
-        filter: blur(8px); /* 关键虚化参数 */
-        z-index: -1;
-        opacity: 0.9; /* 适当降低亮度 */
-    }
-
-    /* 调整登录框样式 */
-    .login-box {
-        background: rgba(255, 255, 255, 0.85); /* 提高不透明度 */
-        backdrop-filter: blur(2px); /* 叠加轻微毛玻璃效果 */
-        /* 其他原有样式保持不变 */
-    }
+        /* 重置浏览器默认样式 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* 设置背景图片 */
         body {
-            /* 关键修改：使用contain替代cover，避免图片拉伸 */
-            background-image: url('01.png');
-            background-size: contain;        /* 图片完整显示不裁剪 */
+            background-image: url('./images/01.png');
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-color: #ffccdd;      /* 添加粉色背景作为图片周边填充 */
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -45,92 +25,81 @@
             font-family: 'Microsoft YaHei', sans-serif;
         }
 
-        /* 新增遮罩层，确保表单在任何背景下都清晰 */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.3);
-            z-index: -1;
-        }
-
+        /* 登录表单容器 */
         .login-box {
-            background: rgba(255, 255, 255, 0.95); /* 提高表单不透明度 */
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
+                        inset 0 0 10px rgba(255, 255, 255, 0.2);
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 0 30px rgba(255, 192, 203, 0.5); /* 粉色阴影 */
             width: 400px;
-            backdrop-filter: blur(5px);     /* 毛玻璃效果 */
-            border: 1px solid rgba(255, 182, 193, 0.5); /* 粉色边框 */
         }
 
+        /* 标题样式 */
         h2 {
             text-align: center;
-            color: #ff6699;                 /* 粉色标题 */
+            color: #333;
             margin-bottom: 30px;
-            font-size: 28px;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            font-size: 24px;
         }
 
+        /* 输入框组样式 - 已修正对齐问题 */
         .input-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
         }
 
         label {
-            display: block;
             margin-bottom: 8px;
-            color: #ff6699;                /* 粉色标签 */
-            font-size: 16px;
+            color: #666;
+            font-size: 14px;
+            display: block;
+            width: 100%;
         }
 
         input {
             width: 100%;
             padding: 12px;
-            border: 2px solid #ffb6c1;      /* 粉色边框 */
-            border-radius: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
             font-size: 16px;
             transition: all 0.3s;
-            background: rgba(255, 255, 255, 0.8);
         }
 
         input:focus {
             outline: none;
-            border-color: #ff3366;          /* 深粉色聚焦效果 */
-            box-shadow: 0 0 5px rgba(255, 51, 102, 0.3);
+            border-color: #ff6699;
+            box-shadow: 0 0 5px rgba(255, 105, 153, 0.3);
         }
 
+        /* 登录按钮 */
         button {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(to right, #ff6699, #ff3366); /* 粉色渐变 */
+            padding: 12px;
+            background: #ff6699;
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 18px;
+            border-radius: 6px;
+            font-size: 16px;
             cursor: pointer;
             transition: all 0.3s;
             margin-top: 10px;
-            font-weight: bold;
-            letter-spacing: 1px;
         }
 
         button:hover {
-            background: linear-gradient(to right, #ff3366, #ff0066); /* 深粉色渐变 */
+            background: #ff3366;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+            box-shadow: 0 5px 10px rgba(255, 51, 102, 0.2);
         }
 
+        /* 响应式设计 */
         @media (max-width: 480px) {
-            body {
-                background-size: cover;     /* 手机端恢复cover模式 */
-            }
             .login-box {
                 width: 90%;
-                padding: 25px;
+                padding: 30px;
             }
         }
     </style>
@@ -141,12 +110,24 @@
         <form>
             <div class="input-group">
                 <label for="username">用户名</label>
-                <input type="text" id="username" placeholder="请输入用户名" required>
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="请输入用户名"
+                    required
+                >
             </div>
+
             <div class="input-group">
                 <label for="password">密码</label>
-                <input type="password" id="password" placeholder="请输入密码" required>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="请输入密码"
+                    required
+                >
             </div>
+
             <button type="submit">立即登录</button>
         </form>
     </div>
