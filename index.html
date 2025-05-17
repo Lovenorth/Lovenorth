@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登录界面</title>
     <style>
+        /* 新增背景虚化层 */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('01.png') center/cover; /* 继承主背景图 */
+        filter: blur(8px); /* 关键虚化参数 */
+        z-index: -1;
+        opacity: 0.9; /* 适当降低亮度 */
+    }
+
+    /* 调整登录框样式 */
+    .login-box {
+        background: rgba(255, 255, 255, 0.85); /* 提高不透明度 */
+        backdrop-filter: blur(2px); /* 叠加轻微毛玻璃效果 */
+        /* 其他原有样式保持不变 */
+    }
         * {
             margin: 0;
             padding: 0;
