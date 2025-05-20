@@ -23,7 +23,7 @@
             margin-bottom: 30px;
         }
         .section-title {
-            background-color: #a8d8ea; /* 浅蓝色 */
+            background-color: #a8d8ea;
             color: white;
             padding: 15px;
             font-size: 20px;
@@ -38,9 +38,9 @@
             margin-bottom: 15px;
             padding: 10px;
             color: #333;
-            font-weight: bold; /* 加粗文字 */
-            background-color: #ffccdd; /* 粉红色背景 */
-            border-radius: 5px; /* 圆角 */
+            font-weight: bold;
+            background-color: #ffccdd;
+            border-radius: 5px;
         }
         .eat-button {
             background-color: #ff6b6b;
@@ -59,85 +59,218 @@
             margin-bottom: 15px;
             border-radius: 5px;
             overflow: hidden;
-            border: 1px solid #ddd; /* 浅灰色边框 */
+            border: 1px solid #ddd;
         }
         .image-container img {
             width: 100%;
             height: auto;
             display: block;
         }
+        /* 购物车样式 */
+        .cart-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 300px;
+            z-index: 1000;
+        }
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .cart-title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .cart-count {
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+        .cart-items {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-item-name {
+            flex: 1;
+        }
+        .cart-item-price {
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+        }
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            border: 1px solid #ddd;
+            background-color: #f5f5f5;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .quantity-value {
+            margin: 0 8px;
+            min-width: 20px;
+            text-align: center;
+        }
+        .remove-btn {
+            color: #ff6b6b;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .cart-total {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            font-weight: bold;
+            text-align: right;
+        }
+        .checkout-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .checkout-btn:hover {
+            background-color: #45a049;
+        }
+        .cart-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1001;
+        }
     </style>
 </head>
 <body>
+    <button class="cart-toggle">🛒</button>
+
+    <div class="cart-container" style="display: none;">
+        <div class="cart-header">
+            <div class="cart-title">我的购物车</div>
+            <div class="cart-count">0</div>
+        </div>
+        <div class="cart-items">
+            <!-- 购物车商品将在这里动态添加 -->
+        </div>
+        <div class="cart-total">
+            总计: ¥<span class="total-amount">0</span>
+        </div>
+        <button class="checkout-btn">去结算</button>
+    </div>
+
     <div class="recipe-container">
         <!-- 家食菜谱部分 -->
         <div class="recipe-section">
             <div class="section-title">家食菜谱</div>
-            <div class="text-item">麻辣小龙虾<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">麻辣小龙虾 ¥88<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food2.png" alt="麻辣小龙虾">
             </div>
-            <div class="text-item">香辣虾<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">香辣虾 ¥68<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food1.png" alt="香辣虾">
             </div>
-            <div class="text-item">糖醋排骨<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">糖醋排骨 ¥58<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food3.png" alt="糖醋排骨">
             </div>
-            <div class="text-item">小炒肉<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">小炒肉 ¥48<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food4.png" alt="糖醋排骨">
             </div>
-            <div class="text-item">小炒黄牛肉<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">小炒黄牛肉 ¥52<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food5.png" alt="糖醋排骨">
             </div>
-            <div class="text-item">煎鸡翅<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">煎鸡翅 ¥45<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food6.png" alt="糖醋排骨">
             </div>
-            <div class="text-item">煎牛排<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">煎牛排 ¥78<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food7.png" alt="糖醋排骨">
             </div>
-            <div class="text-item">鸡汤<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">鸡汤 ¥65<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food8.png" alt="糖醋排骨">
             </div>
-            <div class="text-item">火锅<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">火锅 ¥128<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food9.png" alt="糖醋排骨">
             </div>
-            <div class="text-item">蒜香炸排骨<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">蒜香炸排骨 ¥55<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food10.png" alt="糖醋排骨">
             </div>
-            <div class="text-item">卤大鸡腿<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">卤大鸡腿 ¥38<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food11.png" alt="糖醋排骨">
             </div>
-            <div class="text-item">炒鸡蛋<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">炒鸡蛋 ¥25<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food12.png" alt="糖醋排骨">
             </div>
-            <div class="text-item">盐水菜心<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">盐水菜心 ¥22<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food13.png" alt="糖醋排骨">
             </div>
-            <div class="text-item">炒小白菜<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">炒小白菜 ¥20<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food14.png" alt="糖醋排骨">
             </div>
-            <div class="text-item">炒上海青<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">炒上海青 ¥22<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food15.png" alt="糖醋排骨">
             </div>
-            <div class="text-item">炒包菜<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">炒包菜 ¥18<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food16.png" alt="糖醋排骨">
             </div>
-            <div class="text-item">蒜蓉生菜<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">蒜蓉生菜 ¥20<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="./images/home-food17.png" alt="糖醋排骨">
             </div>
@@ -146,11 +279,11 @@
         <!-- 外食菜谱部分 -->
         <div class="recipe-section">
             <div class="section-title">外食菜谱</div>
-            <div class="text-item">自助<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">自助 ¥98<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="images/out-food1.jpg" alt="自助餐">
             </div>
-            <div class="text-item">烤肉<button class="eat-button">我要吃它</button></div>
+            <div class="text-item">烤肉 ¥128<button class="eat-button">加入购物车</button></div>
             <div class="image-container">
                 <img src="images/out-food2.jpg" alt="烤肉">
             </div>
@@ -158,11 +291,159 @@
     </div>
 
     <script>
-        // 为所有"我要吃它"按钮添加点击事件
-        document.querySelectorAll('.eat-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const dishName = this.parentNode.textContent.replace('我要吃它', '').trim();
-                alert(`您选择了: ${dishName}！\n美味即将为您呈现~`);
+        // 购物车数据
+        const cart = {
+            items: [],
+            total: 0,
+
+            // 添加商品到购物车
+            addItem: function(name, price) {
+                const existingItem = this.items.find(item => item.name === name);
+
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    this.items.push({
+                        name: name,
+                        price: price,
+                        quantity: 1
+                    });
+                }
+
+                this.updateCart();
+            },
+
+            // 从购物车移除商品
+            removeItem: function(name) {
+                const index = this.items.findIndex(item => item.name === name);
+
+                if (index !== -1) {
+                    this.items.splice(index, 1);
+                    this.updateCart();
+                }
+            },
+
+            // 更新商品数量
+            updateQuantity: function(name, newQuantity) {
+                const item = this.items.find(item => item.name === name);
+
+                if (item) {
+                    if (newQuantity <= 0) {
+                        this.removeItem(name);
+                    } else {
+                        item.quantity = newQuantity;
+                    }
+
+                    this.updateCart();
+                }
+            },
+
+            // 计算总价
+            calculateTotal: function() {
+                this.total = this.items.reduce((sum, item) => {
+                    return sum + (item.price * item.quantity);
+                }, 0);
+            },
+
+            // 更新购物车显示
+            updateCart: function() {
+                this.calculateTotal();
+
+                const cartItemsEl = document.querySelector('.cart-items');
+                const cartCountEl = document.querySelector('.cart-count');
+                const totalAmountEl = document.querySelector('.total-amount');
+
+                // 更新商品列表
+                cartItemsEl.innerHTML = '';
+
+                this.items.forEach(item => {
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'cart-item';
+
+                    itemEl.innerHTML = `
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">¥${item.price}</div>
+                        <div class="cart-item-quantity">
+                            <div class="quantity-btn minus" data-name="${item.name}">-</div>
+                            <div class="quantity-value">${item.quantity}</div>
+                            <div class="quantity-btn plus" data-name="${item.name}">+</div>
+                        </div>
+                        <div class="remove-btn" data-name="${item.name}">×</div>
+                    `;
+
+                    cartItemsEl.appendChild(itemEl);
+                });
+
+                // 更新数量和总价
+                cartCountEl.textContent = this.items.reduce((sum, item) => sum + item.quantity, 0);
+                totalAmountEl.textContent = this.total.toFixed(2);
+
+                // 添加事件监听器
+                document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const name = btn.getAttribute('data-name');
+                        const item = cart.items.find(item => item.name === name);
+                        if (item) {
+                            cart.updateQuantity(name, item.quantity - 1);
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const name = btn.getAttribute('data-name');
+                        const item = cart.items.find(item => item.name === name);
+                        if (item) {
+                            cart.updateQuantity(name, item.quantity + 1);
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.remove-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const name = btn.getAttribute('data-name');
+                        cart.removeItem(name);
+                    });
+                });
+            }
+        };
+
+        // 初始化购物车
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为所有"加入购物车"按钮添加点击事件
+            document.querySelectorAll('.eat-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const text = this.parentNode.textContent.replace('加入购物车', '').trim();
+                    const parts = text.split(' ¥');
+                    const name = parts[0];
+                    const price = parseFloat(parts[1]);
+
+                    cart.addItem(name, price);
+
+                    // 显示提示
+                    alert(`已添加 ${name} 到购物车！`);
+                });
+            });
+
+            // 购物车显示/隐藏切换
+            document.querySelector('.cart-toggle').addEventListener('click', function() {
+                const cartContainer = document.querySelector('.cart-container');
+                if (cartContainer.style.display === 'none') {
+                    cartContainer.style.display = 'block';
+                } else {
+                    cartContainer.style.display = 'none';
+                }
+            });
+
+            // 结算按钮
+            document.querySelector('.checkout-btn').addEventListener('click', function() {
+                if (cart.items.length === 0) {
+                    alert('购物车是空的，请先添加商品！');
+                } else {
+                    alert(`结算成功！总金额: ¥${cart.total.toFixed(2)}\n感谢您的光临！`);
+                    cart.items = [];
+                    cart.updateCart();
+                }
             });
         });
     </script>
